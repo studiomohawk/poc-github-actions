@@ -27,3 +27,15 @@ jobs:
           name: "World"
       - name: Local Action Output
         run: echo "${{ steps.local-action.outputs.random }}"
+
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4 # Necessary to access local action
+      - name: Local Action Call
+        id: local-action
+        uses: ./.github/workflows/action.yaml
+        with:
+          name: "World"
+      - name: Local Action Output
+        run: echo "${{ steps.local-action.outputs.random }}"
